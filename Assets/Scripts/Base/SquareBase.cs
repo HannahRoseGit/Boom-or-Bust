@@ -38,7 +38,26 @@ public class SquareBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             {
                 /* Add tower create object*/
                 /* Set tower id */
-                AddTower(1);
+
+                if (GameManager.Instance.towerCounter < 8) {
+                    int value = 0;
+                    if (GameManager.Instance.SelectedTower == GameManager.Instance.towerPrefab0){
+                        value = 1;
+                    } else if (GameManager.Instance.SelectedTower == GameManager.Instance.towerPrefab1) {
+                        value = 2;
+                    } else if (GameManager.Instance.SelectedTower == GameManager.Instance.towerPrefab2) {
+                        value = 3;
+                    } else if (GameManager.Instance.SelectedTower == GameManager.Instance.towerPrefab3) {
+                        value = 4;
+                    } else {
+                        value = 0;
+                    }
+                      
+                    if (value == 0) {
+                        return;
+                    }
+                    AddTower(value);
+                }
             } else if (eventData.button == PointerEventData.InputButton.Right)
             {
                 /* Remove tower destroy object*/
@@ -62,7 +81,7 @@ public class SquareBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             Tower towerComponent = newTower.GetComponent<Tower>();
             if (towerComponent != null)
             {
-                towerComponent.Initialize(100, 1);
+                towerComponent.Initialize(100, newTowerId);
             }
             GameManager.Instance.towerCounter++;
         }

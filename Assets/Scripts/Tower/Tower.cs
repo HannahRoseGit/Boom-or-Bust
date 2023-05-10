@@ -22,28 +22,28 @@ public class Tower : MonoBehaviour
 
         switch (type)
         {
-            case 0:
+            case 1:
                 health = 100;
                 range = 50f;
                 bulletType = GameManager.Instance.bulletTowerPrefab0;
                 interval = 0.3f;
                 timer = interval;
                 break;
-            case 1:
+            case 2:
                 health = 100;
                 range = 50f;
                 bulletType = GameManager.Instance.bulletTowerPrefab1Foot;
                 interval = 0.5f;
                 timer = interval;
                 break;
-            case 2:
+            case 3:
                 health = 100;
                 range = 50f;
                 interval = 0.3f;
                 timer = interval;
                 bulletType = GameManager.Instance.bulletTowerPrefab2;
                 break;
-            case 3:
+            case 4:
                 health = 100;
                 range = 50f;
                 interval = 0.3f;
@@ -90,7 +90,7 @@ public class Tower : MonoBehaviour
 
         if (timer >= interval && closestDistance < range)
         {
-            if (type == 1){
+            if (type == 2){
                 switch(Random.Range(0, 3)) {
                     case 0:
                     bulletType = GameManager.Instance.bulletTowerPrefab1Basket;

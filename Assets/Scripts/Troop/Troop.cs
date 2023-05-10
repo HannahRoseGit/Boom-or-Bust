@@ -31,32 +31,36 @@ public class Troop : MonoBehaviour
         switch (type)
         {
             case 0:
+                moveSpeed = 10f;
                 cost = 1;
                 range = 20;
-                bulletType = GameManager.Instance.bulletTowerPrefab0;
+                bulletType = GameManager.Instance.bulletTroopPrefab0;
                 interval = 0.3f;
                 timer = interval;
                 break;
             case 1:
+                moveSpeed = 2f;
                 cost = 2;
                 range = 2;
-                bulletType = GameManager.Instance.bulletTowerPrefab0;
+                bulletType = GameManager.Instance.bulletTroopPrefab0;
                 interval = 0.3f;
                 timer = interval;
                 break;
             case 2:
+                moveSpeed = 3f;
                 cost = 5;
                 range = 20;
                 interval = 0.3f;
                 timer = interval;
-                bulletType = GameManager.Instance.bulletTowerPrefab2;
+                bulletType = GameManager.Instance.bulletTroopPrefab2;
                 break;
             case 3:
+                moveSpeed = 5f;
                 cost = 10;
                 range = 20;
                 interval = 0.3f;
                 timer = interval;
-                bulletType = GameManager.Instance.bulletTowerPrefab3;
+                bulletType = GameManager.Instance.bulletTroopPrefab3;
                 break;
             default:
                 Destroy(gameObject);
