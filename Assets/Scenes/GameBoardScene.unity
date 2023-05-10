@@ -10761,12 +10761,12 @@ MonoBehaviour:
   bulletTowerPrefab1Basket: {fileID: 9077202864003573435, guid: 965a6688ab197cf44938c612a475499a, type: 3}
   bulletTowerPrefab1Beach: {fileID: 2250564675104353168, guid: bf0ad2631f99ceb4a9f5324f95c815ed, type: 3}
   bulletTowerPrefab1Foot: {fileID: 2008147765139916816, guid: cf515144c27f68f49acae293960876fe, type: 3}
-  bulletTowerPrefab2: {fileID: 0}
-  bulletTowerPrefab3: {fileID: 0}
-  bulletTroopPrefab0: {fileID: 0}
-  bulletTroopPrefab1: {fileID: 0}
-  bulletTroopPrefab2: {fileID: 0}
-  bulletTroopPrefab3: {fileID: 0}
+  bulletTowerPrefab2: {fileID: 8637650861511066545, guid: 51e028ad49508f842a86b2d6b2a668c6, type: 3}
+  bulletTowerPrefab3: {fileID: 6821990293087371393, guid: 827d8212f3dc83e49ae18112eca9e89f, type: 3}
+  bulletTroopPrefab0: {fileID: 2008147765139916816, guid: cf515144c27f68f49acae293960876fe, type: 3}
+  bulletTroopPrefab1: {fileID: 2008147765139916816, guid: cf515144c27f68f49acae293960876fe, type: 3}
+  bulletTroopPrefab2: {fileID: 6821990293087371393, guid: 827d8212f3dc83e49ae18112eca9e89f, type: 3}
+  bulletTroopPrefab3: {fileID: 642849574064667052, guid: e7ee22191b1cb1047b5968cd16ee768f, type: 3}
   Ready: {fileID: 1500632159}
   timerSound: {fileID: 1069493608}
   timerDing: {fileID: 1069493607}

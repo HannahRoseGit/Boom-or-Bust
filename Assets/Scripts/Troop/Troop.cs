@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Troop : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    private float moveSpeed;
 
     private int cost = 0;
     private int type;
@@ -28,28 +28,29 @@ public class Troop : MonoBehaviour
         this.health.Initialize(100);
         this.type = type;
 
+
         switch (type)
         {
             case 0:
-                moveSpeed = 10f;
+                moveSpeed = 15f;
                 cost = 1;
-                range = 20;
+                range = 1;
                 bulletType = GameManager.Instance.bulletTroopPrefab0;
                 interval = 0.3f;
                 timer = interval;
                 break;
             case 1:
-                moveSpeed = 2f;
+                moveSpeed = 3f;
                 cost = 2;
-                range = 2;
-                bulletType = GameManager.Instance.bulletTroopPrefab0;
+                range = 1;
+                bulletType = GameManager.Instance.bulletTroopPrefab1;
                 interval = 0.3f;
                 timer = interval;
                 break;
             case 2:
-                moveSpeed = 3f;
+                moveSpeed = 5f;
                 cost = 5;
-                range = 20;
+                range = 40;
                 interval = 0.3f;
                 timer = interval;
                 bulletType = GameManager.Instance.bulletTroopPrefab2;
@@ -57,7 +58,7 @@ public class Troop : MonoBehaviour
             case 3:
                 moveSpeed = 5f;
                 cost = 10;
-                range = 20;
+                range = 35;
                 interval = 0.3f;
                 timer = interval;
                 bulletType = GameManager.Instance.bulletTroopPrefab3;
@@ -67,7 +68,7 @@ public class Troop : MonoBehaviour
                 GameManager.Instance.troopCounter--;
                 break;
         }
-        GameManager.Instance.troopCounter++;
+        GameManager.Instance.troopCounter = GameManager.Instance.troopCounter + cost;
 
     }
 

@@ -388,7 +388,12 @@ public class GameManager : MonoBehaviour
         timerSound.Stop();
         timerDing.Play();
         isTimerRunning = false;
-        CurrentState = GameState.Battle;
+        if (CurrentState == GameState.Mine) {
+            CurrentState = GameState.Minesweeper;
+        }
+        if (CurrentState == GameState.Minesweeper) {
+            CurrentState = GameState.Battle;
+        }
     }
 
     public void GameOver()
