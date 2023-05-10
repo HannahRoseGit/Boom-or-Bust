@@ -15,7 +15,7 @@ public class Hover : MonoBehaviour
     {
         if (y_threshold == 0) Debug.Log("Please enter a y threshold in the respective field of the 'Hover' script ");
         else{
-            x_right_threshold = (x_right_threshold == 0)? Screen.width: x_right_threshold;
+            x_right_threshold = Screen.width;
             if (Input.mousePosition.y <= y_threshold && 
                 Input.mousePosition.x >= x_left_threshold &&
                 Input.mousePosition.x <= x_right_threshold) 

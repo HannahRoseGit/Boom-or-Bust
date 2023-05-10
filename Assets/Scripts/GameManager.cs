@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+
+
     [SerializeField] private Material pathMaterial;
     [SerializeField] private Material cityMaterial;
     [SerializeField] private Material cityLite;
@@ -65,7 +67,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject towerPrefab1;
     [SerializeField] public GameObject towerPrefab2;
     [SerializeField] public GameObject towerPrefab3;
-public bool gameOver = false;
+    public bool gameOver = false;
 
     [SerializeField] public GameObject troopPrefab0;
     [SerializeField] public GameObject troopPrefab1;
@@ -79,33 +81,40 @@ public bool gameOver = false;
     [SerializeField] public GameObject bulletTowerPrefab1Foot;
     [SerializeField] public GameObject bulletTowerPrefab2;
     [SerializeField] public GameObject bulletTowerPrefab3;
-    
-    [SerializeField] private GameObject bulletPrefab4;
-    [SerializeField] private GameObject bulletPrefab5;
-    [SerializeField] private GameObject bulletPrefab6;
+
+    [SerializeField] public GameObject bulletTroopPrefab0;
+    [SerializeField] public GameObject bulletTroopPrefab1;
+    [SerializeField] public GameObject bulletTroopPrefab2;
+    [SerializeField] public GameObject bulletTroopPrefab3;
 
 
-    [SerializeField] public GameObject TowerSelect;
 
     [SerializeField] public GameObject Ready;
 
     [SerializeField] private AudioSource timerSound;
     [SerializeField] private AudioSource timerDing;
 
+    [SerializeField] public GameObject towerSelectionBar;
+    [SerializeField] public GameObject troopSelectionBar;
+
+
     public static bool gameWon;
 
     private void Start()
     {
-
+        troopSelectionBar.SetActive(false);
     }
 
     bool printed = false;
     private void Update()
     {
-        if(CurrentState == GameState.Mine){
-            TowerSelect.gameObject.SetActive(false);
+        if (CurrentState == GameState.Mine)
+        {
+            towerSelectionBar.gameObject.SetActive(false);
             Ready.gameObject.SetActive(true);
-        }else{
+        }
+        else
+        {
             Ready.gameObject.SetActive(false);
         }
         if (CurrentState == GameState.Minesweeper && !printed)
@@ -116,9 +125,9 @@ public bool gameOver = false;
 
             DestroyBoard();
 
-            string createdJson = SerializeGameData(Matchmaking.matchID); 
+            string createdJson = SerializeGameData(Matchmaking.matchID);
 
-            string recievedJson = ExchangeGamePageData(createdJson); 
+            string recievedJson = ExchangeGamePageData(createdJson);
 
             BuildBoard(recievedJson);
 
@@ -132,17 +141,24 @@ public bool gameOver = false;
             print(SerializeGameData("123", city.health.HealthAmt, troopCounter));
 
         }
+        if (currentState == GameState.Battle)
+        {
+            troopSelectionBar.SetActive(true);
+        }
     }
 
-    private string ExchangeGamePageData(string jsonData){
+    private string ExchangeGamePageData(string jsonData)
+    {
         IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
         //IPAddress ipAddress = IPAddress.Parse("130.229.191.142"); // replace with server IP address
+        //IPAddress ipAddress = IPAddress.Parse("130.229.185.251");
         IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11000); // replace with server port number
 
         // Create a TCP/IP socket
         Socket clientSocket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-        try {
+        try
+        {
             // Connect to the remote endpoint
             clientSocket.Connect(remoteEP);
 
@@ -155,10 +171,12 @@ public bool gameOver = false;
             int bytesRecv = clientSocket.Receive(recvData);
             jsonData = Encoding.UTF8.GetString(recvData, 0, bytesRecv);
             clientSocket.Close();
-            
+
             return jsonData;
             //return recvStr;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Debug.Log(e);
             return null;
             //return gameCode;
@@ -210,6 +228,24 @@ public bool gameOver = false;
             }
             else if (kvp.Value > 0)
             {
+                switch (kvp.Value)
+                {
+                    case 1:
+                        SelectedTower = towerPrefab0;
+                        break;
+                    case 2:
+                        SelectedTower = towerPrefab1;
+                        break;
+                    case 3:
+                        SelectedTower = towerPrefab2;
+                        break;
+                    case 4:
+                        SelectedTower = towerPrefab3;
+                        break;
+                    default:
+                        break;
+                }
+
                 square.GetComponent<SquareBase>().AddTower(kvp.Value);
             }
         }
@@ -226,7 +262,7 @@ public bool gameOver = false;
         return json;
     }
 
-     public string SerializeGameData(string matchId, float cityHealth, int troopsUsed)
+    public string SerializeGameData(string matchId, float cityHealth, int troopsUsed)
     {
         GameData gameData = new GameData();
         gameData.MatchId = matchId;
@@ -358,15 +394,21 @@ public bool gameOver = false;
     public void GameOver()
     {
         string jsonString2;
-        if(Matchmaking.playerNumber == 0){
+        if (Matchmaking.playerNumber == 0)
+        {
             jsonString2 = "{\"MatchId\":\"123\",\"MessageType\":\"End\",\"CityHealth\":100.0,\"TroopsUsed\":0,\"Positions\":null}";
-        }else{
+        }
+        else
+        {
             jsonString2 = "{\"MatchId\":\"123\",\"MessageType\":\"End\",\"CityHealth\":100.0,\"TroopsUsed\":10,\"Positions\":null}";
         }
         string recievedJson = ExchangeGamePageData(jsonString2);
-        if(recievedJson == "Win"){
+        if (recievedJson == "Win")
+        {
             gameWon = true;
-        }else{
+        }
+        else
+        {
             gameWon = false;
         }
         Debug.Log(recievedJson);
@@ -441,7 +483,8 @@ public bool gameOver = false;
         set { towerPrefab1 = value; }
     }
 
-    public GameObject TroopPrefab1 {
+    public GameObject TroopPrefab1
+    {
         get { return troopPrefab1; }
         set { troopPrefab1 = value; }
     }

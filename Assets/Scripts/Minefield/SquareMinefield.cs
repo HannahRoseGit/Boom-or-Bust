@@ -72,6 +72,9 @@ public class SquareMinefield : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
+                if (GameManager.Instance.mineCounter > 9) {
+                    return;
+                }
                 AddMine(-1);
             }
             else if (eventData.button == PointerEventData.InputButton.Right)

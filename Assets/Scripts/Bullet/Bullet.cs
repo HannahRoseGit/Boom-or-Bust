@@ -50,16 +50,16 @@ public class Bullet : MonoBehaviour
             }
         } else {
             switch (type) {
-                case 0:
-                break;
                 case 1:
+                break;
+                case 2:
                 bulletSpeed = 50f;
                 transform.Rotate(new Vector3(0, 0, 1));
                 pushBack = true;
                 break;
-                case 2:
-                break;
                 case 3:
+                break;
+                case 4:
                 break;
                 default:
                 break;
