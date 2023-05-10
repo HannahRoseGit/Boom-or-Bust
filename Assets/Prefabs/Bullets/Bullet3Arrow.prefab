@@ -53,7 +53,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1886853556191674125, guid: f6da58037434761439a5aa66e3c32655, type: 3}
       propertyPath: m_Name
-      value: Bullet2Arrow
+      value: Bullet3Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722619758960713326, guid: f6da58037434761439a5aa66e3c32655, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722619758960713326, guid: f6da58037434761439a5aa66e3c32655, type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5722619758960713326, guid: f6da58037434761439a5aa66e3c32655, type: 3}
       propertyPath: m_Sprite

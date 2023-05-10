@@ -42,6 +42,7 @@ public class Bullet : MonoBehaviour
                 case 1:
                 break;
                 case 2:
+                transform.Rotate(new Vector3(0, 0, 2));
                 break;
                 case 3:
                 break;
@@ -55,9 +56,11 @@ public class Bullet : MonoBehaviour
                 case 2:
                 bulletSpeed = 50f;
                 transform.Rotate(new Vector3(0, 0, 1));
-                pushBack = true;
                 break;
                 case 3:
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(target.transform.position), 5f * Time.deltaTime);
+                bulletSpeed = 80f;
+                pushBack = true;
                 break;
                 case 4:
                 break;
